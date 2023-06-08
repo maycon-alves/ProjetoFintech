@@ -93,7 +93,7 @@ public class GastoDAO {
 			gasto.setIdGasto(rs.getString("id_gasto"));
 			gasto.setValorGasto(rs.getDouble("vl_gasto"));
 			gasto.setDescricaoGasto(rs.getString("ds_gasto"));
-			gasto.setCategoriaGasto(rs.getString("id_categoriagasto"));
+			gasto.setCategoriaGastoSQL(rs.getString("id_categoriagasto"));
 			gastos.add(gasto);
 		}
 		stmt.close();
@@ -103,22 +103,30 @@ public class GastoDAO {
 	
 	public List<Gasto> getAllbyId(String id) throws SQLException {
 		List<Gasto> gastos = new ArrayList<Gasto>();
-		String sql = "SELECT * FROM t_gasto WHERE t_user_cd_cpf = ?";
+		System.out.println("entramos no get all");
+		//String sql = "SELECT * FROM t_gasto WHERE t_user_cd_cpf = ?";
+		String sql = "SELECT t_gasto.id_gasto, t_gasto.vl_gasto, t_gasto.ds_gasto, t_gasto.dt_gasto, t_gasto.id_categoriagasto, t_gasto.cd_tipogasto, t_gasto.t_forma_pgto_id_formapgto, t_forma_pgto.id_formapgto, t_forma_pgto.nm_nickformapgto  FROM t_gasto JOIN t_forma_pgto ON t_gasto.t_forma_pgto_id_formapgto = t_forma_pgto.id_formapgto WHERE t_gasto.t_user_cd_cpf = ?";		
 		PreparedStatement stmt = conexao.prepareStatement(sql);
 		stmt.setString(1, id);
 		ResultSet rs = stmt.executeQuery();
 
 		while (rs.next()) {
+			System.out.println("entramos no while");
 			Gasto gasto = new Gasto() {
 			};
 			gasto.setIdGasto(rs.getString("id_gasto"));
 			gasto.setValorGasto(rs.getDouble("vl_gasto"));
 			gasto.setDescricaoGasto(rs.getString("ds_gasto"));
-			gasto.setCategoriaGasto(rs.getString("id_categoriagasto"));
+			gasto.setCategoriaGastoSQL(rs.getString("id_categoriagasto"));
+			gasto.setTipoGasto(rs.getString("cd_tipogasto"));
+			gasto.setDataGasto(rs.getString("dt_gasto"));
+			gasto.setNickFormaPgto(rs.getString("nm_nickformapgto"));
 			gastos.add(gasto);
+			System.out.println("olha o gasto" + gasto);
 		}
 		stmt.close();
 		rs.close();
+		System.out.println(gastos);
 		return gastos;
 	}
 
@@ -137,7 +145,7 @@ public class GastoDAO {
 			gasto.setDescricaoGasto(rs.getString("ds_gasto"));
 			gasto.setDataGasto(rs.getString("dt_gasto"));
 			gasto.setTipoGasto(rs.getString("cd_tipogasto"));
-			gasto.setCategoriaGasto(rs.getString("id_categoriagasto"));
+			gasto.setCategoriaGastoSQL(rs.getString("id_categoriagasto"));
 		}
 		stmt.close();
 		rs.close();

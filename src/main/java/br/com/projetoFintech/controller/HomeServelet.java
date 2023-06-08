@@ -1,6 +1,8 @@
 package br.com.projetoFintech.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import br.com.projetoFintech.dao.GastoDAO;
+import br.com.projetoFintech.model.Gasto;
 
 /**
  * Servlet implementation class HomeServelet
@@ -34,6 +37,7 @@ public class HomeServelet extends HttpServlet {
 		HttpSession session = request.getSession();	
 		String userId = (String) session.getAttribute("cpf");
 		try {
+			System.out.println(userId);
 			GastoDAO gasto = new GastoDAO();
 			request.setAttribute("gastos", gasto.getAllbyId(userId));
 			request.getRequestDispatcher("home.jsp").forward(request, response);
