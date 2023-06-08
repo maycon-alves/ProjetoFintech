@@ -54,19 +54,18 @@ public class FormaPagamentoServelet extends HttpServlet {
 		String user = (String) session.getAttribute("cpf");
 		
 		try {
+			System.out.println("olha o user da session" + user);
 			FormaPagamentoDAO dao = new FormaPagamentoDAO();
 			dao.insert(formaPgto, user);
 			request.setAttribute("message", "Forma de pagamento cadastrada com sucesso!");
 			request.getRequestDispatcher("home.jsp").forward(request, response);
-			
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e);
 			e.printStackTrace();
 			request.setAttribute("error", "erro ao inserir forma de pagamento no banco");
 			request.getRequestDispatcher("cadastro-formaPagamento.jsp").forward(request, response);
-		}
-		
+		}	
 		System.out.println("==========POST-FIM-FORMA_PAGAMENTO=============");
 	}
 
