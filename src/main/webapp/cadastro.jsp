@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +11,12 @@
 <body>
 	<h2>Crie uma conta</h2>
 	<img src="./img/cadastro.png">
+	<c:if test="${not empty message }">
+		<div>${message}</div>
+	</c:if>
+	<c:if test="${not empty error }">
+		<div>${error}</div>
+	</c:if>
 	<form method="post" action="cadastro">
 		<ul>
 			<li><label>CPF</label> <input type="text"

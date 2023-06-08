@@ -51,7 +51,7 @@ public class CadastroServelet extends HttpServlet {
 		String cpf = request.getParameter("cpf");
 		String nome = request.getParameter("nome");
 		String apelido = request.getParameter("apelido");
-		String senha = request.getParameter("cpf");
+		String senha = request.getParameter("senha");
 		String senhaConfirma = request.getParameter("confirmarSenha");
 		TipoPerfilInvestidorEnum perfil = identificaPerfil(request);
 		TipoFaturamentoEnum faturamento = identificaFaturamento(request);
