@@ -32,6 +32,8 @@ public class CadastroServelet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("aqui estamos1");
 		UsuarioDAO user = new UsuarioDAO();
+		String cpf = request.getParameter("cpf");
+		System.out.println(request.getParameter("cpf"));
 		response.getWriter().append("sucesso");
 	}
 
@@ -40,7 +42,10 @@ public class CadastroServelet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("aqui estamos2");
+		System.out.println("==========POST=============");
+		String cpf = request.getParameter("cpf");
+		System.out.println(cpf);
+		System.out.println("==========POST=============");
 		doGet(request, response);
 	}
 
