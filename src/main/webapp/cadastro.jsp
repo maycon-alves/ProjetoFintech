@@ -10,7 +10,7 @@
 <body>
 	<h2>Crie uma conta</h2>
 	<img src="./img/cadastro.png">
-	<form method="POST" action="cadastro">
+	<form method="post" action="cadastro">
 		<ul>
 			<li><label>CPF</label> <input type="text"
 				placeholder="xxx.xxx.xxx-xx" name="cpf" class="card"></li>

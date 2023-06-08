@@ -33,6 +33,7 @@ public class UsuarioDAO {
 
 		stmt.execute();
 		stmt.close();
+		System.out.println("Usuario Cadastrado");
 
 	}
 

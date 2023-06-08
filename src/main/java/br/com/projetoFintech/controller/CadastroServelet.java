@@ -9,7 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.projetoFintech.Enums.TipoFaturamentoEnum;
+import br.com.projetoFintech.Enums.TipoPerfilInvestidorEnum;
 import br.com.projetoFintech.dao.UsuarioDAO;
+import br.com.projetoFintech.model.Usuario;
 
 /**
  * Servlet implementation class Servelet
@@ -43,8 +46,23 @@ public class CadastroServelet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.println("==========POST=============");
+		UsuarioDAO dao = new UsuarioDAO();
 		String cpf = request.getParameter("cpf");
-		System.out.println(cpf);
+		String nome = request.getParameter("nome");
+		String apelido = request.getParameter("apelido");
+		String senha = request.getParameter("cpf");
+		TipoPerfilInvestidorEnum perfil = TipoPerfilInvestidorEnum.CONSERVADOR;
+		TipoFaturamentoEnum faturamento = TipoFaturamentoEnum.FIXO_MENSAL;
+		
+		Usuario user = new Usuario(cpf,nome,senha,apelido,perfil,faturamento);
+		System.out.println(user.toString());
+		try {
+			dao.insert(user);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e);
+			e.printStackTrace();
+		}
 		System.out.println("==========POST=============");
 		doGet(request, response);
 	}
