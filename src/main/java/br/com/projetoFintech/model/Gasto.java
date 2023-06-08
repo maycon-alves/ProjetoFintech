@@ -19,19 +19,22 @@ public abstract class Gasto{
 	private CategoriaGastoEnum categoriaGasto;
 	private Usuario usuario;
 	private FormaPagamentoModel formaPgto;
+	private String nickFormaPgto;
 	
 	
+
 	public Gasto() {
 		
 	}
 
-	public Gasto(String idGasto, Double valorGasto, String descricaoGasto, CategoriaGastoEnum categoriaGasto, Usuario usuario, FormaPagamentoModel formaPgto) {
+	public Gasto(String idGasto, Double valorGasto, String descricaoGasto, CategoriaGastoEnum categoriaGasto, Usuario usuario, FormaPagamentoModel formaPgto, String nickFormaPgto) {
 		this.idGasto = idGasto;
 		this.valorGasto = valorGasto;
 		this.descricaoGasto = descricaoGasto;
 		this.categoriaGasto = categoriaGasto;
 		this.usuario = usuario;
 		this.formaPgto = formaPgto;
+		this.nickFormaPgto = nickFormaPgto;
 	}
 	
 	public String getDataGasto() {
@@ -110,7 +113,15 @@ public abstract class Gasto{
 		this.categoriaGasto = categoriaGasto;
 	}
 	
-	public void setCategoriaGasto(String categoriaGasto) {
+	public String getNickFormaPgto() {
+		return nickFormaPgto;
+	}
+	
+	public void setNickFormaPgto(String nickFormaPgto) {
+		this.nickFormaPgto = nickFormaPgto;
+	}
+	
+	public void setCategoriaGastoSQL(String categoriaGasto) {
 		switch (categoriaGasto) {
 		case "Alimentação", "ALIMENTACAO": {			
 			this.categoriaGasto = CategoriaGastoEnum.ALIMENTACAO;
