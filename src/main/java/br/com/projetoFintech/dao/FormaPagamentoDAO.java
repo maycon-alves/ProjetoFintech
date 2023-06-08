@@ -21,7 +21,7 @@ public class FormaPagamentoDAO {
 		System.out.println("Conectou!");
 	}
 	
-	public void insert(FormaPagamentoModel formaPgto) throws SQLException {
+	public void insert(FormaPagamentoModel formaPgto, String user) throws SQLException {
 		String sql = "INSERT INTO t_forma_pgto (id_formapgto, nm_nickformapgto, dt_datavencimentofatura, dt_aberturafatura, ds_tipoformapagamento) VALUES (SQ_t_forma_pgto.NEXTVAL,?,?,?,?)";
 		PreparedStatement stmt = conexao.prepareStatement(sql);
 		
@@ -33,9 +33,38 @@ public class FormaPagamentoDAO {
 		
 		stmt.execute();
 		stmt.close();
+		
+		
+		String sql2 = "INSERT INTO t_user_fpgto VALUES(?,?)";
+		PreparedStatement stmt2 = conexao.prepareStatement(sql);
+		stmt2.setString(1, user);
+		stmt2.setString(2, getLastVall());
+		
+		stmt2.execute();
+		stmt2.close();
+		
+		
+		
 	}
 	
-	public List<FormaPagamentoModel> getAll() throws SQLException {
+	public String getLastVall() throws SQLException {
+		System.out.println("entrei");
+		String lastIdFormaPgto = null;
+		String sql = "SELECT id_formapgto FROM t_forma_pgto WHERE id_formapgto = (SELECT MAX(id_formapgto) FROM t_forma_pgto)";
+		PreparedStatement stmt = conexao.prepareStatement(sql);
+		ResultSet rs = stmt.executeQuery();
+		
+		while(rs.next()) {
+			lastIdFormaPgto = rs.getString("id_formapgto");
+			System.out.println(lastIdFormaPgto);			
+		}
+		stmt.close();
+		rs.close();
+		return lastIdFormaPgto;
+		
+	}
+	
+ 	public List<FormaPagamentoModel> getAll() throws SQLException {
 		List<FormaPagamentoModel> formasPgto = new ArrayList<FormaPagamentoModel>();
 		String sql = "SELECT * FROM t_forma_pgto";
 		PreparedStatement stmt = conexao.prepareStatement(sql);

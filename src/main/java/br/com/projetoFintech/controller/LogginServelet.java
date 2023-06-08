@@ -52,7 +52,7 @@ public class LogginServelet extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("apelido", user.getApelidoUsuario());
 				session.setAttribute("cpf", user.getCpf());
-				request.getRequestDispatcher("home.jsp").forward(request, response);
+				request.getRequestDispatcher("home").forward(request, response);
 			}else {
 				request.setAttribute("error", "Senha incorreta");
 				request.getRequestDispatcher("login.jsp").forward(request, response);

@@ -91,7 +91,7 @@
 	</form>
 	<div class="footer">
 		<p>Já possui uma conta?</p>
-		<a href="./login.html">Entrar</a>
+		<a href="login">Entrar</a>
 	</div>
 </body>
 </html>

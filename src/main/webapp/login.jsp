@@ -34,7 +34,7 @@
 
 	</form>
 	<div class="footer">
-		Não possui uma conta?<a href="./cadastro.jsp">Cadastre-se</a>
+		Não possui uma conta?<a href="cadastro">Cadastre-se</a>
 	</div>
 
 

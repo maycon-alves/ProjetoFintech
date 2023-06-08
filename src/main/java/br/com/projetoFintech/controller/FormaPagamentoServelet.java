@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.projetoFintech.dao.FormaPagamentoDAO;
 import br.com.projetoFintech.model.FormaPagamentoModel;
@@ -42,19 +43,22 @@ public class FormaPagamentoServelet extends HttpServlet {
 		// TODO Auto-generated method stub
 		System.out.println("==========POST-INICIO-FORMA_PAGAMENTO=============");
 		
-		String idFormaPagamento = "9999";
 		String apelidoFormaPagamento = request.getParameter("apelidoFormaPagamento");
 		String tipoFormaPagmento = request.getParameter("tipoFormaPagmento");
 		String dataVencimentoFatura = request.getParameter("dataVencimentoFatura");
 		String dataAberturaFatura = request.getParameter("dataAberturaFatura");
 		
-		FormaPagamentoModel formaPgto = new FormaPagamentoModel(idFormaPagamento,apelidoFormaPagamento,tipoFormaPagmento,dataVencimentoFatura,dataAberturaFatura);;
+		FormaPagamentoModel formaPgto = new FormaPagamentoModel(apelidoFormaPagamento,tipoFormaPagmento,dataVencimentoFatura,dataAberturaFatura);;
+		
+		HttpSession session = request.getSession();	
+		String user = (String) session.getAttribute("cpf");
 		
 		try {
 			FormaPagamentoDAO dao = new FormaPagamentoDAO();
-			dao.insert(formaPgto);
+			dao.insert(formaPgto, user);
 			request.setAttribute("message", "Forma de pagamento cadastrada com sucesso!");
 			request.getRequestDispatcher("home.jsp").forward(request, response);
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e);
