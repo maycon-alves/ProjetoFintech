@@ -8,6 +8,8 @@ public class FormaPagamentoModel implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 6L;
+	private String idFormaPagamento;
+
 	private String apelidoFormaPagamento;
 	private String tipoFormaPagmento;
 	private String dataVencimentoFatura;
@@ -25,6 +27,13 @@ public class FormaPagamentoModel implements Serializable {
 		this.dataAberturaFatura = dataAberturaFatura;
 	}
 
+	public String getIdFormaPagamento() {
+		return idFormaPagamento;
+	}
+	
+	public void setIdFormaPagamento(String idFormaPagamento) {
+		this.idFormaPagamento = idFormaPagamento;
+	}
 	
 	public String getApelidoFormaPagamento() {
 		return apelidoFormaPagamento;
@@ -60,9 +69,11 @@ public class FormaPagamentoModel implements Serializable {
 
 	@Override
 	public String toString() {
-		return "FormaPagamento [apelidoFormaPagamento="
+		return "FormaPagamentoModel [idFormaPagamento=" + idFormaPagamento + ", apelidoFormaPagamento="
 				+ apelidoFormaPagamento + ", tipoFormaPagmento=" + tipoFormaPagmento + ", dataVencimentoFatura="
 				+ dataVencimentoFatura + ", dataAberturaFatura=" + dataAberturaFatura + "]";
 	}
+
+	
 
 }
