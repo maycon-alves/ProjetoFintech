@@ -63,7 +63,7 @@ public class CadastroServelet extends HttpServlet {
 			try {
 				UsuarioDAO dao = new UsuarioDAO();
 				dao.insert(user);
-				request.setAttribute("message", "Usuario cadastrado com sucesso");
+				request.setAttribute("message", "Usuario cadastrado com sucesso!");
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
