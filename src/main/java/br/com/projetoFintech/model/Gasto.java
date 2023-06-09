@@ -5,7 +5,7 @@ import br.com.projetoFintech.Enums.CategoriaGastoEnum;
 //import java.io.Serializable;
 
 
-public abstract class Gasto{
+public class Gasto{
 
 	/**
 	 * 
@@ -65,6 +65,12 @@ public abstract class Gasto{
 		this.usuario = usuario;
 	}
 
+	public void setCpfUsuario(String cpf) {
+		Usuario user = new Usuario();
+		user.setCpf(cpf);
+		this.usuario = user;
+	}
+	
 	public FormaPagamentoModel getFormaPgto() {
 		return formaPgto;
 	}
@@ -75,6 +81,12 @@ public abstract class Gasto{
 
 	public void setFormaPgto(FormaPagamentoModel formaPgto) {
 		this.formaPgto = formaPgto;
+	}
+	
+	public void setFormaPgtoId(String idFormaPgto) {
+		FormaPagamentoModel forma = new FormaPagamentoModel();
+		forma.setIdFormaPagamento(idFormaPgto);
+		this.formaPgto = forma;
 	}
 
 	public String getIdGasto() {
@@ -91,6 +103,10 @@ public abstract class Gasto{
 
 	public void setValorGasto(Double valorGasto) {
 		this.valorGasto = valorGasto;
+	}
+	
+	public void setValorGastoString(String valorGasto) {
+		this.valorGasto = Double.parseDouble(valorGasto);
 	}
 
 	public String getDescricaoGasto() {
@@ -128,23 +144,23 @@ public abstract class Gasto{
 			break;
 		}
 		case "Saúde", "Saude", "SAUDE": {			
-			this.categoriaGasto = CategoriaGastoEnum.ALIMENTACAO;
+			this.categoriaGasto = CategoriaGastoEnum.SAUDE;
 			break;
 		}
 		case "Lazer", "LAZER": {			
-			this.categoriaGasto = CategoriaGastoEnum.ALIMENTACAO;
+			this.categoriaGasto = CategoriaGastoEnum.LAZER;
 			break;
 		}
 		case "Impulso", "IMPULSO": {			
-			this.categoriaGasto = CategoriaGastoEnum.ALIMENTACAO;
+			this.categoriaGasto = CategoriaGastoEnum.IMPULSO;
 			break;
 		}
 		case "Despesa_Fixa", "DESPESA_FIXA", "Despesa Fixa": {			
-			this.categoriaGasto = CategoriaGastoEnum.ALIMENTACAO;
+			this.categoriaGasto = CategoriaGastoEnum.DESPESA_FIXA;
 			break;
 		}
 		case "Imprevisto", "IMPREVISTO": {			
-			this.categoriaGasto = CategoriaGastoEnum.ALIMENTACAO;
+			this.categoriaGasto = CategoriaGastoEnum.IMPREVISTO;
 			break;
 		}
 		default:

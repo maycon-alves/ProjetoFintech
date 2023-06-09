@@ -87,6 +87,24 @@ public class FormaPagamentoDAO {
 		return formasPgto;
 	}
 
+	public List<FormaPagamentoModel> getAllbyUser(String cpf) throws SQLException {
+		List<FormaPagamentoModel> formasPgto = new ArrayList<FormaPagamentoModel>();
+		String sql = "SELECT id_formapgto, nm_nickformapgto FROM t_forma_pgto WHERE cd_user = ?";
+		PreparedStatement stmt = conexao.prepareStatement(sql);
+		stmt.setString(1, cpf);
+		ResultSet rs = stmt.executeQuery();
+
+		while (rs.next()) {
+			FormaPagamentoModel formaPgto = new FormaPagamentoModel();
+			formaPgto.setIdFormaPagamento(rs.getString("id_formapgto"));
+			formaPgto.setApelidoFormaPagamento(rs.getString("nm_nickformapgto"));
+			formasPgto.add(formaPgto);
+		}
+		stmt.close();
+		rs.close();
+		return formasPgto;
+	}
+	
 	public FormaPagamentoModel selectFormaPagamentoById(String id) throws SQLException {
 		FormaPagamentoModel formaPgto = null;
 		String sql = "SELECT * FROM t_forma_pgto WHERE id_formapgto=?";
