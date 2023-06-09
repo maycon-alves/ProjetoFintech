@@ -67,16 +67,19 @@ public class CadastroGastoServelet extends HttpServlet {
 		gasto.setDataGasto(request.getParameter("dataGasto"));
 		gasto.setTipoGasto(identificaTipoGasto(request));
 		gasto.setCategoriaGasto(identificaCategoriaGasto(request));
-		String cpfUsuario = (String) session.getAttribute("cpf");
+		gasto.setCpfUsuario((String) session.getAttribute("cpf"));
 		gasto.setFormaPgtoId(request.getParameter("idFormaPagamento"));
-
+		
+		System.out.println(gasto.toString());
+		
 		try {
 			GastoDAO dao = new GastoDAO();
 			dao.insert(gasto);
 			request.setAttribute("message", "Gasto cadastrado com sucesso!");
-			request.getRequestDispatcher("home.jsp").forward(request, response);
+			request.getRequestDispatcher("home").forward(request, response);
 		} catch (Exception e) {
-			// TODO: handle exception
+			request.setAttribute("error", "erro ao recuperar formas de pagamento da base");
+			request.getRequestDispatcher("home").forward(request, response);
 		}
 		
 		System.out.println("==========POST-FIM-CADASTRO_GASTO=============");
@@ -102,7 +105,7 @@ public class CadastroGastoServelet extends HttpServlet {
 	}
 	
 	private String identificaTipoGasto(HttpServletRequest request) {
-		if(request.getParameter("tipoGasto").equalsIgnoreCase("Fixo")) {
+		if(request.getParameter("FIXO") != null) {
 			return "Fixo";
 		}else {
 			return "Mensal";

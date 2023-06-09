@@ -169,11 +169,14 @@ public class Gasto{
 		
 		
 	}
-	
+
 	@Override
 	public String toString() {
-		return "idGasto=" + idGasto + ", valorGasto=" + valorGasto + ", descricaoGasto=" + descricaoGasto
-				+ ", categoriaGasto=" + categoriaGasto;
+		return "Gasto [idGasto=" + idGasto + ", valorGasto=" + valorGasto + ", descricaoGasto=" + descricaoGasto
+				+ ", dataGasto=" + dataGasto + ", tipoGasto=" + tipoGasto + ", categoriaGasto=" + categoriaGasto
+				+ ", usuario=" + usuario + ", formaPgto=" + formaPgto + ", nickFormaPgto=" + nickFormaPgto + "]";
 	}
+	
+
 
 }
